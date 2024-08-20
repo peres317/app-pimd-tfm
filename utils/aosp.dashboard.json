@@ -1,0 +1,748 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Android Open Source Project Data",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 8,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "# Dashboard de AOSP (Android Open Source Project)\n\n---",
+        "mode": "markdown"
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "",
+          "refId": "A"
+        }
+      ],
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Representa el grupo/s de permisos Android seleccionado/s en el dashboard.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "fieldMinMax": false,
+          "mappings": [
+            {
+              "options": {
+                "android.permission-group.ACTIVITY_RECOGNITION": {
+                  "index": 0,
+                  "text": "Reconocimiento de Actividad"
+                },
+                "android.permission-group.CALENDAR": {
+                  "index": 1,
+                  "text": "Calendario"
+                },
+                "android.permission-group.CALL_LOG": {
+                  "index": 2,
+                  "text": "Registro de Llamadas"
+                },
+                "android.permission-group.CAMERA": {
+                  "index": 3,
+                  "text": "Cámara"
+                },
+                "android.permission-group.CONTACTS": {
+                  "index": 4,
+                  "text": "Contactos"
+                },
+                "android.permission-group.LOCATION": {
+                  "index": 5,
+                  "text": "Ubicación"
+                },
+                "android.permission-group.MICROPHONE": {
+                  "index": 6,
+                  "text": "Micrófono"
+                },
+                "android.permission-group.NEARBY_DEVICES": {
+                  "index": 7,
+                  "text": "Dispositivos Cercanos"
+                },
+                "android.permission-group.NOTIFICATIONS": {
+                  "index": 8,
+                  "text": "Notificaciones"
+                },
+                "android.permission-group.PHONE": {
+                  "index": 9,
+                  "text": "Teléfono"
+                },
+                "android.permission-group.READ_MEDIA_AURAL": {
+                  "index": 10,
+                  "text": "Audio de Almacenamiento Compartido"
+                },
+                "android.permission-group.READ_MEDIA_VISUAL": {
+                  "index": 11,
+                  "text": "Imágenes y Video de Almacenamiento Compartido"
+                },
+                "android.permission-group.SENSORS": {
+                  "index": 12,
+                  "text": "Sensores"
+                },
+                "android.permission-group.SMS": {
+                  "index": 13,
+                  "text": "SMS"
+                },
+                "android.permission-group.STORAGE": {
+                  "index": 14,
+                  "text": "Almacenamiento"
+                }
+              },
+              "type": "value"
+            },
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "index": 15,
+                  "text": "Sin grupo"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 2
+      },
+      "id": 3,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "uniqueValues"
+          ],
+          "fields": "/^android_permission_group_name$/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT DISTINCT\n  android_permission_group_name\nFROM \n  app_warehouse.android_permission \nWHERE \n  android_permission_group_name IN ($android_permission_group) ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "android_permission_group"
+        }
+      ],
+      "title": "Grupo de Permisos Android Seleccionado",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Número total de Grupos de Permisos Seleccionados",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 6,
+        "x": 0,
+        "y": 11
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  COUNT(DISTINCT android_permission_group_name)\nFROM \n  app_warehouse.android_permission \nWHERE \n  android_permission_group_name IN ($android_permission_group) \n  OR \n  (\"android.permission-group.UNDEFINED\" IN ($android_permission_group) AND android_permission_group_name IS NULL)",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Número Total de Grupos de Permisos Seleccionados",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Permisos declarados por el sistema operativo Android que pertenecen al grupo/s seleccionado/s.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "permission_name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 500
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Nombre"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 486
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 15,
+        "w": 9,
+        "x": 6,
+        "y": 11
+      },
+      "id": 2,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "count"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT \n  permission_name AS \"Nombre\", added_in_api_level as \"Versión SDK\"\nFROM \n  app_warehouse.android_permission \nWHERE \n  android_permission_group_name IN ($android_permission_group) \n  OR \n  (\"android.permission-group.UNDEFINED\" IN ($android_permission_group) AND android_permission_group_name IS NULL)",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "permission_name",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "android_permission"
+        }
+      ],
+      "title": "Lista de Permisos Seleccionados",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Representa la distribución de la versión de SDK del sistema Android en que se incluyeron los permisos seleccionados. No se tienen en cuenta los permisos de los que no se tiene esta información.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "Nº de Permisos",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 15,
+        "w": 9,
+        "x": 15,
+        "y": 11
+      },
+      "id": 6,
+      "options": {
+        "barRadius": 0.25,
+        "barWidth": 0.5,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "orientation": "vertical",
+        "showValue": "always",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "single",
+          "sort": "asc"
+        },
+        "xField": "added_in_api_level",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  added_in_api_level AS \"SDK\", COUNT(*) AS \"Nº de Permisos\"\nFROM \n  app_warehouse.android_permission \nWHERE \n  (android_permission_group_name IN ($android_permission_group) \n  OR \n  (\"android.permission-group.UNDEFINED\" IN ($android_permission_group) AND android_permission_group_name IS NULL))\n  AND\n  added_in_api_level IS NOT NULL\n  AND\n  added_in_api_level != \"UpsideDownCake\"\nGROUP BY\n  added_in_api_level\nORDER BY \n  CAST(added_in_api_level AS UNSIGNED)",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Distribución de la versión de SDK de los Permisos seleccionados",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Número total de Permisos Seleccionados",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 21
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  COUNT(permission_name)\nFROM \n  app_warehouse.android_permission \nWHERE \n  android_permission_group_name IN ($android_permission_group) \n  OR \n  (\"android.permission-group.UNDEFINED\" IN ($android_permission_group) AND android_permission_group_name IS NULL)",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Número Total de Permisos Seleccionados",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 9,
+        "y": 26
+      },
+      "id": 7,
+      "options": {
+        "folderUID": "ddux3l4hdje9sf",
+        "includeVars": false,
+        "keepTime": false,
+        "maxItems": 10,
+        "query": "",
+        "showFolderNames": false,
+        "showHeadings": false,
+        "showRecentlyViewed": false,
+        "showSearch": true,
+        "showStarred": false,
+        "tags": []
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Menu",
+      "type": "dashlist"
+    }
+  ],
+  "refresh": "auto",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": "",
+        "current": {
+          "selected": true,
+          "text": [
+            "android.permission-group.ACTIVITY_RECOGNITION",
+            "android.permission-group.CALENDAR",
+            "android.permission-group.CALL_LOG",
+            "android.permission-group.CAMERA",
+            "android.permission-group.CONTACTS",
+            "android.permission-group.LOCATION",
+            "android.permission-group.MICROPHONE",
+            "android.permission-group.NEARBY_DEVICES",
+            "android.permission-group.NOTIFICATIONS",
+            "android.permission-group.PHONE",
+            "android.permission-group.READ_MEDIA_AURAL",
+            "android.permission-group.READ_MEDIA_VISUAL",
+            "android.permission-group.SENSORS",
+            "android.permission-group.SMS",
+            "android.permission-group.STORAGE"
+          ],
+          "value": [
+            "android.permission-group.ACTIVITY_RECOGNITION",
+            "android.permission-group.CALENDAR",
+            "android.permission-group.CALL_LOG",
+            "android.permission-group.CAMERA",
+            "android.permission-group.CONTACTS",
+            "android.permission-group.LOCATION",
+            "android.permission-group.MICROPHONE",
+            "android.permission-group.NEARBY_DEVICES",
+            "android.permission-group.NOTIFICATIONS",
+            "android.permission-group.PHONE",
+            "android.permission-group.READ_MEDIA_AURAL",
+            "android.permission-group.READ_MEDIA_VISUAL",
+            "android.permission-group.SENSORS",
+            "android.permission-group.SMS",
+            "android.permission-group.STORAGE"
+          ]
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "fdut1p3chthq8b"
+        },
+        "definition": "select permission_group_name from android_permission_group;",
+        "description": "Grupo de permisos definido por el sistema operativo Android.",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Grupo de Permisos Android",
+        "multi": true,
+        "name": "android_permission_group",
+        "options": [],
+        "query": "select permission_group_name from android_permission_group;",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "AOSP",
+  "uid": "ddut2jauxvk00f",
+  "version": 52,
+  "weekStart": ""
+}

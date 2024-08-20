@@ -1,0 +1,2098 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Panel de mandos para analizar el estado en la privacidad general de aplicaciones Android. ",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 3,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 20,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "# Dashboard de Análisis de Privacidad en Aplicaciones Android\n\n---",
+        "mode": "markdown"
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "",
+          "refId": "A"
+        }
+      ],
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 2
+      },
+      "id": 1,
+      "title": "Por Categoría",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Categoría de aplicaciones Android.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "ART_AND_DESIGN": {
+                  "index": 7,
+                  "text": "Arte y Diseño"
+                },
+                "AUTO_AND_VEHICLES": {
+                  "index": 8,
+                  "text": "Vehiculos"
+                },
+                "BEAUTY": {
+                  "index": 23,
+                  "text": "Belleza"
+                },
+                "BOOKS_AND_REFERENCE": {
+                  "index": 15,
+                  "text": "Libros y Referencias"
+                },
+                "BUSINESS": {
+                  "index": 5,
+                  "text": "Negocio"
+                },
+                "COMICS": {
+                  "index": 10,
+                  "text": "Comics"
+                },
+                "COMMUNICATION": {
+                  "index": 0,
+                  "text": "Comunicación"
+                },
+                "DATING": {
+                  "index": 9,
+                  "text": "Citas"
+                },
+                "EDUCATION": {
+                  "index": 3,
+                  "text": "Educación"
+                },
+                "ENTERTAINMENT": {
+                  "index": 1,
+                  "text": "Entretenimiento"
+                },
+                "EVENTS": {
+                  "index": 6,
+                  "text": "Eventos"
+                },
+                "FINANCE": {
+                  "index": 4,
+                  "text": "Finanzas"
+                },
+                "FOOD_AND_DRINK": {
+                  "index": 20,
+                  "text": "Alimentación"
+                },
+                "GAME_ACTION": {
+                  "index": 17,
+                  "text": "Juegos de Acción"
+                },
+                "GAME_ADVENTURE": {
+                  "index": 31,
+                  "text": "Juegos de Aventura"
+                },
+                "GAME_ARCADE": {
+                  "index": 37,
+                  "text": "Juegos de Arcade"
+                },
+                "GAME_BOARD": {
+                  "index": 36,
+                  "text": "Juegos de Tablero"
+                },
+                "GAME_CARD": {
+                  "index": 28,
+                  "text": "Juegos de Cartas"
+                },
+                "GAME_CASINO": {
+                  "index": 43,
+                  "text": "Juegos de Casino"
+                },
+                "GAME_CASUAL": {
+                  "index": 11,
+                  "text": "Juegos Casuales"
+                },
+                "GAME_EDUCATIONAL": {
+                  "index": 47,
+                  "text": "Juegos Educativos"
+                },
+                "GAME_MUSIC": {
+                  "index": 45,
+                  "text": "Juegos de Música"
+                },
+                "GAME_PUZZLE": {
+                  "index": 18,
+                  "text": "Juegos de Puzzles"
+                },
+                "GAME_RACING": {
+                  "index": 41,
+                  "text": "Juegos de Carreras"
+                },
+                "GAME_ROLE_PLAYING": {
+                  "index": 34,
+                  "text": "Juegos de Rol"
+                },
+                "GAME_SIMULATION": {
+                  "index": 19,
+                  "text": "Juegos de Simulación"
+                },
+                "GAME_SPORTS": {
+                  "index": 46,
+                  "text": "Juegos de Deportes"
+                },
+                "GAME_STRATEGY": {
+                  "index": 40,
+                  "text": "Juegos de Estrategia"
+                },
+                "GAME_TRIVIA": {
+                  "index": 38,
+                  "text": "Juegos de Trivial"
+                },
+                "GAME_WORD": {
+                  "index": 42,
+                  "text": "Juegos de Palabras"
+                },
+                "HEALTH_AND_FITNESS": {
+                  "index": 16,
+                  "text": "Salud"
+                },
+                "HOUSE_AND_HOME": {
+                  "index": 33,
+                  "text": "Hogar"
+                },
+                "LIBRARIES_AND_DEMO": {
+                  "index": 30,
+                  "text": "Librerías"
+                },
+                "LIFESTYLE": {
+                  "index": 21,
+                  "text": "Estilo de Vida"
+                },
+                "MAPS_AND_NAVIGATION": {
+                  "index": 35,
+                  "text": "Mapas y Navegación"
+                },
+                "MEDICAL": {
+                  "index": 29,
+                  "text": "Médicas"
+                },
+                "MUSIC_AND_AUDIO": {
+                  "index": 22,
+                  "text": "Música"
+                },
+                "NEWS_AND_MAGAZINES": {
+                  "index": 27,
+                  "text": "Noticias y Revistas"
+                },
+                "PARENTING": {
+                  "index": 48,
+                  "text": "Parentales"
+                },
+                "PERSONALIZATION": {
+                  "index": 32,
+                  "text": "Personalización"
+                },
+                "PHOTOGRAPHY": {
+                  "index": 25,
+                  "text": "Fotografía"
+                },
+                "PRODUCTIVITY": {
+                  "index": 26,
+                  "text": "Productividad"
+                },
+                "SHOPPING": {
+                  "index": 13,
+                  "text": "Compras"
+                },
+                "SOCIAL": {
+                  "index": 24,
+                  "text": "Redes Sociales"
+                },
+                "SPORTS": {
+                  "index": 12,
+                  "text": "Deportes"
+                },
+                "TOOLS": {
+                  "index": 2,
+                  "text": "Herramientas"
+                },
+                "TRAVEL_AND_LOCAL": {
+                  "index": 14,
+                  "text": "Viajes"
+                },
+                "VIDEO_PLAYERS": {
+                  "index": 44,
+                  "text": "Reproductores de Video"
+                },
+                "WEATHER": {
+                  "index": 39,
+                  "text": "Tiempo"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 0,
+        "y": 3
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^category$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT category FROM app_warehouse.app WHERE category = '$category' LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "category",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "ba8aa989-cdef-4012-b456-719156903034",
+                  "properties": {
+                    "field": "category",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "$category"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898a898-0123-4456-b89a-b191568d18ab",
+              "type": "group"
+            },
+            "whereString": "category = '$category'"
+          },
+          "table": "app"
+        }
+      ],
+      "title": "Categoría Seleccionada",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Valor promedio de la métrica de privacidad $privacy_rank_name en la categoría $category",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "mappings": [],
+          "max": 10,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 0
+              },
+              {
+                "color": "dark-red",
+                "value": 10
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 4,
+        "x": 5,
+        "y": 3
+      },
+      "id": 4,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  AVG(score_value) \nFROM\n  score\nWHERE\n  app_hash IN (SELECT hash FROM app WHERE category='$category')\n  AND\n  privacy_rank_name='$privacy_rank_name' ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "9998bbb8-4567-489a-bcde-f191569acf80",
+                  "properties": {
+                    "field": "privacy_rank_name",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "$privacy_rank_name"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "8bba9a9b-0123-4456-b89a-b191569af95f",
+                  "properties": {
+                    "field": "app_hash",
+                    "fieldSrc": "field",
+                    "operator": "select_any_in",
+                    "value": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898a898-0123-4456-b89a-b191568d18ab",
+              "type": "group"
+            },
+            "whereString": "privacy_rank_name = '$privacy_rank_name'"
+          },
+          "table": "score"
+        }
+      ],
+      "title": "Valoración $privacy_rank_name promedio",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Distribución de las puntuaciones obtenidas",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            }
+          },
+          "mappings": [],
+          "max": 10,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 7,
+        "x": 9,
+        "y": 3
+      },
+      "id": 5,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        }
+      },
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  score_value \nFROM\n  score\nWHERE\n  app_hash IN (SELECT hash FROM app WHERE category='$category')\n  AND\n  privacy_rank_name='$privacy_rank_name' ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Distribución de las puntuaciones de $privacy_rank_name en $category",
+      "type": "histogram"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Muestra la puntuación promedio que obtienen las apps de la categoría $category para cada métrica.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Valor de la Métrica",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "displayName": "Métrica",
+          "mappings": [],
+          "max": 10,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 3
+      },
+      "id": 6,
+      "options": {
+        "barRadius": 0.05,
+        "barWidth": 0.97,
+        "colorByField": "AVG(score_value)",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "orientation": "auto",
+        "showValue": "never",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "privacy_rank_name",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  AVG(score_value), privacy_rank_name\nFROM\n  score\nWHERE\n  app_hash IN (SELECT hash FROM app WHERE category='$category')\nGROUP BY \n  privacy_rank_name",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Puntuación promedio por Métrica para la categoría $category",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Número de aplicaciones involucradas en la selección.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 0,
+        "y": 7
+      },
+      "id": 3,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT COUNT(hash) FROM app_warehouse.app WHERE category = '$category' LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "name": "COUNT",
+                "parameters": [
+                  {
+                    "name": "hash",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "abaab88b-89ab-4cde-b012-31915699a70e",
+                  "properties": {
+                    "field": "category",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "$category"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898a898-0123-4456-b89a-b191568d18ab",
+              "type": "group"
+            },
+            "whereString": "category = '$category'"
+          },
+          "table": "app"
+        }
+      ],
+      "title": "Número de Aplicaciones en $category",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 11
+      },
+      "id": 7,
+      "panels": [],
+      "title": "Por SDK",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Versión mínima de SDK Seleccionada.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "ART_AND_DESIGN": {
+                  "index": 7,
+                  "text": "Arte y Diseño"
+                },
+                "AUTO_AND_VEHICLES": {
+                  "index": 8,
+                  "text": "Vehiculos"
+                },
+                "BEAUTY": {
+                  "index": 23,
+                  "text": "Belleza"
+                },
+                "BOOKS_AND_REFERENCE": {
+                  "index": 15,
+                  "text": "Libros y Referencias"
+                },
+                "BUSINESS": {
+                  "index": 5,
+                  "text": "Negocio"
+                },
+                "COMICS": {
+                  "index": 10,
+                  "text": "Comics"
+                },
+                "COMMUNICATION": {
+                  "index": 0,
+                  "text": "Comunicación"
+                },
+                "DATING": {
+                  "index": 9,
+                  "text": "Citas"
+                },
+                "EDUCATION": {
+                  "index": 3,
+                  "text": "Educación"
+                },
+                "ENTERTAINMENT": {
+                  "index": 1,
+                  "text": "Entretenimiento"
+                },
+                "EVENTS": {
+                  "index": 6,
+                  "text": "Eventos"
+                },
+                "FINANCE": {
+                  "index": 4,
+                  "text": "Finanzas"
+                },
+                "FOOD_AND_DRINK": {
+                  "index": 20,
+                  "text": "Alimentación"
+                },
+                "GAME_ACTION": {
+                  "index": 17,
+                  "text": "Juegos de Acción"
+                },
+                "GAME_ADVENTURE": {
+                  "index": 31,
+                  "text": "Juegos de Aventura"
+                },
+                "GAME_ARCADE": {
+                  "index": 37,
+                  "text": "Juegos de Arcade"
+                },
+                "GAME_BOARD": {
+                  "index": 36,
+                  "text": "Juegos de Tablero"
+                },
+                "GAME_CARD": {
+                  "index": 28,
+                  "text": "Juegos de Cartas"
+                },
+                "GAME_CASINO": {
+                  "index": 43,
+                  "text": "Juegos de Casino"
+                },
+                "GAME_CASUAL": {
+                  "index": 11,
+                  "text": "Juegos Casuales"
+                },
+                "GAME_EDUCATIONAL": {
+                  "index": 47,
+                  "text": "Juegos Educativos"
+                },
+                "GAME_MUSIC": {
+                  "index": 45,
+                  "text": "Juegos de Música"
+                },
+                "GAME_PUZZLE": {
+                  "index": 18,
+                  "text": "Juegos de Puzzles"
+                },
+                "GAME_RACING": {
+                  "index": 41,
+                  "text": "Juegos de Carreras"
+                },
+                "GAME_ROLE_PLAYING": {
+                  "index": 34,
+                  "text": "Juegos de Rol"
+                },
+                "GAME_SIMULATION": {
+                  "index": 19,
+                  "text": "Juegos de Simulación"
+                },
+                "GAME_SPORTS": {
+                  "index": 46,
+                  "text": "Juegos de Deportes"
+                },
+                "GAME_STRATEGY": {
+                  "index": 40,
+                  "text": "Juegos de Estrategia"
+                },
+                "GAME_TRIVIA": {
+                  "index": 38,
+                  "text": "Juegos de Trivial"
+                },
+                "GAME_WORD": {
+                  "index": 42,
+                  "text": "Juegos de Palabras"
+                },
+                "HEALTH_AND_FITNESS": {
+                  "index": 16,
+                  "text": "Salud"
+                },
+                "HOUSE_AND_HOME": {
+                  "index": 33,
+                  "text": "Hogar"
+                },
+                "LIBRARIES_AND_DEMO": {
+                  "index": 30,
+                  "text": "Librerías"
+                },
+                "LIFESTYLE": {
+                  "index": 21,
+                  "text": "Estilo de Vida"
+                },
+                "MAPS_AND_NAVIGATION": {
+                  "index": 35,
+                  "text": "Mapas y Navegación"
+                },
+                "MEDICAL": {
+                  "index": 29,
+                  "text": "Médicas"
+                },
+                "MUSIC_AND_AUDIO": {
+                  "index": 22,
+                  "text": "Música"
+                },
+                "NEWS_AND_MAGAZINES": {
+                  "index": 27,
+                  "text": "Noticias y Revistas"
+                },
+                "PARENTING": {
+                  "index": 48,
+                  "text": "Parentales"
+                },
+                "PERSONALIZATION": {
+                  "index": 32,
+                  "text": "Personalización"
+                },
+                "PHOTOGRAPHY": {
+                  "index": 25,
+                  "text": "Fotografía"
+                },
+                "PRODUCTIVITY": {
+                  "index": 26,
+                  "text": "Productividad"
+                },
+                "SHOPPING": {
+                  "index": 13,
+                  "text": "Compras"
+                },
+                "SOCIAL": {
+                  "index": 24,
+                  "text": "Redes Sociales"
+                },
+                "SPORTS": {
+                  "index": 12,
+                  "text": "Deportes"
+                },
+                "TOOLS": {
+                  "index": 2,
+                  "text": "Herramientas"
+                },
+                "TRAVEL_AND_LOCAL": {
+                  "index": 14,
+                  "text": "Viajes"
+                },
+                "VIDEO_PLAYERS": {
+                  "index": 44,
+                  "text": "Reproductores de Video"
+                },
+                "WEATHER": {
+                  "index": 39,
+                  "text": "Tiempo"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 0,
+        "y": 12
+      },
+      "id": 9,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "/^min_sdk_version$/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT DISTINCT min_sdk_version FROM app_warehouse.app WHERE min_sdk_version=$min_sdk_version ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "min_sdk_version",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "ba8aa989-cdef-4012-b456-719156903034",
+                  "properties": {
+                    "field": "min_sdk_version",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      null
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898a898-0123-4456-b89a-b191568d18ab",
+              "type": "group"
+            }
+          },
+          "table": "app"
+        }
+      ],
+      "title": "Versión mínima de SDK Seleccionada",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Valor promedio de la métrica de privacidad $privacy_rank_name con el SDK mínimo seleccionado $min_sdk_version",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "mappings": [],
+          "max": 10,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 0
+              },
+              {
+                "color": "dark-red",
+                "value": 10
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 4,
+        "x": 5,
+        "y": 12
+      },
+      "id": 11,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  AVG(score_value) \nFROM\n  score\nWHERE\n  app_hash IN (SELECT hash FROM app WHERE min_sdk_version=$min_sdk_version)\n  AND\n  privacy_rank_name='$privacy_rank_name' ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "9998bbb8-4567-489a-bcde-f191569acf80",
+                  "properties": {
+                    "field": "privacy_rank_name",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "$privacy_rank_name"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "8bba9a9b-0123-4456-b89a-b191569af95f",
+                  "properties": {
+                    "field": "app_hash",
+                    "fieldSrc": "field",
+                    "operator": "select_any_in",
+                    "value": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898a898-0123-4456-b89a-b191568d18ab",
+              "type": "group"
+            },
+            "whereString": "privacy_rank_name = '$privacy_rank_name'"
+          },
+          "table": "score"
+        }
+      ],
+      "title": "Valoración $privacy_rank_name promedio",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Distribución de las puntuaciones obtenidas",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            }
+          },
+          "displayName": "Valor de la Métrica",
+          "mappings": [],
+          "max": 10,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 7,
+        "x": 9,
+        "y": 12
+      },
+      "id": 12,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        }
+      },
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  score_value \nFROM\n  score\nWHERE\n  app_hash IN (SELECT hash FROM app WHERE min_sdk_version=$min_sdk_version)\n  AND\n  privacy_rank_name='$privacy_rank_name' ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Distribución de las puntuaciones de $privacy_rank_name con SDK $min_sdk_version",
+      "type": "histogram"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Muestra la puntuación promedio que obtienen las apps con versión mínima de SDK $min_sdk_version para cada métrica.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Valor de la Métrica",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "displayName": "Métrica",
+          "mappings": [],
+          "max": 10,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 12
+      },
+      "id": 13,
+      "options": {
+        "barRadius": 0.05,
+        "barWidth": 0.97,
+        "colorByField": "AVG(score_value)",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "orientation": "auto",
+        "showValue": "never",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "privacy_rank_name",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  AVG(score_value), privacy_rank_name\nFROM\n  score\nWHERE\n  app_hash IN (SELECT hash FROM app WHERE min_sdk_version=$min_sdk_version)\nGROUP BY \n  privacy_rank_name",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Puntuación promedio por Métrica para el SDK $min_sdk_version",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Número de aplicaciones involucradas en la selección.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 0,
+        "y": 16
+      },
+      "id": 10,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT COUNT(hash) FROM app_warehouse.app WHERE min_sdk_version=$min_sdk_version ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "name": "COUNT",
+                "parameters": [
+                  {
+                    "name": "hash",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "abaab88b-89ab-4cde-b012-31915699a70e",
+                  "properties": {
+                    "field": "min_sdk_version",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      null
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a898a898-0123-4456-b89a-b191568d18ab",
+              "type": "group"
+            }
+          },
+          "table": "app"
+        }
+      ],
+      "title": "Número de Aplicaciones con SDK $min_sdk_version",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 20
+      },
+      "id": 14,
+      "panels": [],
+      "title": "Misc",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Representa la valoración promedio $privacy_rank_name según dependencia de aplicación.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Valor de la Métrica",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 21
+      },
+      "id": 15,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "colorByField": "Valor de la Métrica",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "Dependencia",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  a.az_dependency_package AS \"Dependencia\", AVG(s.score_value) AS \"Valor de la Métrica\"\nFROM \n  score AS s JOIN az_bind_dependency AS a ON s.app_hash=a.az_metadata_app_hash \nWHERE \n  s.score_value IS NOT NULL \n  AND \n  s.privacy_rank_name='$privacy_rank_name'\nGROUP BY\n  a.az_dependency_package\nORDER BY \n  AVG(s.score_value)",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Intrusividad $privacy_rank_name por Dependencia",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Muestra la progresión del promedio de la métrica $privacy_rank_name según el número de estrellas de valoración.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd",
+            "seriesBy": "last"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "left",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 9,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 21
+      },
+      "id": 16,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "Valoración"
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  a.star_rating AS \"Valoración\", AVG(s.score_value) AS \"Valor Promedio de la Métrica\"\nFROM \n  score AS s JOIN az_metadata AS a ON s.app_hash=a.app_hash \nWHERE \n  s.score_value IS NOT NULL \n  AND \n  s.privacy_rank_name='$privacy_rank_name'\nGROUP BY \n  a.star_rating\nORDER BY \n  a.star_rating",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Métrica $privacy_rank_name según Valoración",
+      "type": "trend"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Muestra la relación entre la intrusividad en la privacidad de las aplicaciones y su tamaño.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "custom": {
+            "axisBorderShow": true,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "pointSize": {
+              "fixed": 2
+            },
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "show": "points"
+          },
+          "fieldMinMax": true,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 21
+      },
+      "id": 17,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "series": [],
+        "seriesMapping": "auto",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  a.size * POW(2, -20) AS \"Tamaño (MB)\", s.score_value AS \"Valor de la Métrica\", app_title AS \"Nombre\"\nFROM \n  score AS s JOIN az_metadata AS a ON s.app_hash=a.app_hash \nWHERE \n  s.score_value IS NOT NULL \n  AND \n  s.privacy_rank_name='$privacy_rank_name';",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Valor de la Métrica $privacy_rank_name vs. Tamaño en MB de la app",
+      "type": "xychart"
+    },
+    {
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 9,
+        "y": 29
+      },
+      "id": 19,
+      "libraryPanel": {
+        "name": "Menu",
+        "uid": "edux3rkhh143kb"
+      },
+      "title": "Menu"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "RPNDroid",
+          "value": "RPNDroid"
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "fdut1p3chthq8b"
+        },
+        "definition": "SELECT privacy_rank_name FROM privacy_rank",
+        "description": "Métricas de privacidad disponibles\n",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Métrica de Privacidad",
+        "multi": false,
+        "name": "privacy_rank_name",
+        "options": [],
+        "query": "SELECT privacy_rank_name FROM privacy_rank",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "FINANCE",
+          "value": "FINANCE"
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "fdut1p3chthq8b"
+        },
+        "definition": "SELECT DISTINCT category FROM app",
+        "description": "Categorías de aplicaciones disponibles",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Categoría",
+        "multi": false,
+        "name": "category",
+        "options": [],
+        "query": "SELECT DISTINCT category FROM app",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "16",
+          "value": "16"
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "fdut1p3chthq8b"
+        },
+        "definition": "SELECT DISTINCT min_sdk_version FROM app ORDER BY min_sdk_version",
+        "description": "Versión mínima de SDK Android necesaria para ejecutar la aplicación.",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Versión mínima de SDK",
+        "multi": false,
+        "name": "min_sdk_version",
+        "options": [],
+        "query": "SELECT DISTINCT min_sdk_version FROM app ORDER BY min_sdk_version",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Análisis de Privacidad",
+  "uid": "eduwsq7t5ovswa",
+  "version": 38,
+  "weekStart": ""
+}

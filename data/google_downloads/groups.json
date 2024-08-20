@@ -1,0 +1,132 @@
+{
+  "androidPermissionGroup_list": [
+    {
+      "AndroidPermissionGroup": {
+        "PermissionGroup": {
+          "name": "android.permission-group.UNDEFINED"
+        },
+        "added_in_api_level": null
+      }
+    },
+    {
+      "AndroidPermissionGroup": {
+        "PermissionGroup": {
+          "name": "android.permission-group.CONTACTS"
+        },
+        "added_in_api_level": "23"
+      }
+    },
+    {
+      "AndroidPermissionGroup": {
+        "PermissionGroup": {
+          "name": "android.permission-group.CALENDAR"
+        },
+        "added_in_api_level": "17"
+      }
+    },
+    {
+      "AndroidPermissionGroup": {
+        "PermissionGroup": {
+          "name": "android.permission-group.SMS"
+        },
+        "added_in_api_level": "23"
+      }
+    },
+    {
+      "AndroidPermissionGroup": {
+        "PermissionGroup": {
+          "name": "android.permission-group.STORAGE"
+        },
+        "added_in_api_level": "4"
+      }
+    },
+    {
+      "AndroidPermissionGroup": {
+        "PermissionGroup": {
+          "name": "android.permission-group.READ_MEDIA_AURAL"
+        },
+        "added_in_api_level": "33"
+      }
+    },
+    {
+      "AndroidPermissionGroup": {
+        "PermissionGroup": {
+          "name": "android.permission-group.READ_MEDIA_VISUAL"
+        },
+        "added_in_api_level": "33"
+      }
+    },
+    {
+      "AndroidPermissionGroup": {
+        "PermissionGroup": {
+          "name": "android.permission-group.LOCATION"
+        },
+        "added_in_api_level": "1"
+      }
+    },
+    {
+      "AndroidPermissionGroup": {
+        "PermissionGroup": {
+          "name": "android.permission-group.CALL_LOG"
+        },
+        "added_in_api_level": "28"
+      }
+    },
+    {
+      "AndroidPermissionGroup": {
+        "PermissionGroup": {
+          "name": "android.permission-group.PHONE"
+        },
+        "added_in_api_level": "23"
+      }
+    },
+    {
+      "AndroidPermissionGroup": {
+        "PermissionGroup": {
+          "name": "android.permission-group.MICROPHONE"
+        },
+        "added_in_api_level": "17"
+      }
+    },
+    {
+      "AndroidPermissionGroup": {
+        "PermissionGroup": {
+          "name": "android.permission-group.ACTIVITY_RECOGNITION"
+        },
+        "added_in_api_level": "29"
+      }
+    },
+    {
+      "AndroidPermissionGroup": {
+        "PermissionGroup": {
+          "name": "android.permission-group.CAMERA"
+        },
+        "added_in_api_level": "17"
+      }
+    },
+    {
+      "AndroidPermissionGroup": {
+        "PermissionGroup": {
+          "name": "android.permission-group.NEARBY_DEVICES"
+        },
+        "added_in_api_level": "31"
+      }
+    },
+    {
+      "AndroidPermissionGroup": {
+        "PermissionGroup": {
+          "name": "android.permission-group.SENSORS"
+        },
+        "added_in_api_level": "23"
+      }
+    },
+    {
+      "AndroidPermissionGroup": {
+        "PermissionGroup": {
+          "name": "android.permission-group.NOTIFICATIONS"
+        },
+        "added_in_api_level": "33"
+      }
+    }
+  ]
+}

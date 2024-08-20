@@ -1,0 +1,2046 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Permite comparar aplicaciones concretas entre si en términos de privacidad.",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 6,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "# Dashboard de Comparaciones de Apps en Privacidad\n\n---",
+        "mode": "markdown"
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "",
+          "refId": "A"
+        }
+      ],
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Nombre de la aplicación A seleccionada.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 0,
+        "y": 2
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^app_title$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  app_title \nFROM \n  app_warehouse.az_metadata\nWHERE \n  app_hash IN (SELECT hash FROM app WHERE package='$packageA')",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "app_title",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "8b89bb88-4567-489a-bcde-f1915a412b35",
+                  "properties": {
+                    "field": "app_hash",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "98a9ba8a-0123-4456-b89a-b1915a30f5b1",
+              "type": "group"
+            }
+          },
+          "table": "az_metadata"
+        }
+      ],
+      "title": "Nombre de la App A",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Número de permisos que solicita la App $packageA",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 4,
+        "y": 2
+      },
+      "id": 8,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  COUNT(permission_name) \nFROM \n  app_warehouse.app_uses_permission\nWHERE \n  app_hash='$hashA'",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "name": "COUNT",
+                "parameters": [
+                  {
+                    "name": "permission_name",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "app_uses_permission"
+        }
+      ],
+      "title": "Permisos Solicitados",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Número de permisos custom que solicita la App $packageA",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 8,
+        "y": 2
+      },
+      "id": 9,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  COUNT(permission_name) \nFROM \n  app_warehouse.app_uses_permission\nWHERE \n  app_hash='$hashA'\n  AND \n  permission_name NOT IN (SELECT permission_name FROM app_warehouse.android_permission)",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "name": "COUNT",
+                "parameters": [
+                  {
+                    "name": "permission_name",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "app_uses_permission"
+        }
+      ],
+      "title": "Permisos Custom Solicitados",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Nombre de la aplicación B seleccionada.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 12,
+        "y": 2
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^app_title$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  app_title \nFROM \n  app_warehouse.az_metadata\nWHERE \n  app_hash IN (SELECT hash FROM app WHERE package='$packageB')",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "app_title",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "8b89bb88-4567-489a-bcde-f1915a412b35",
+                  "properties": {
+                    "field": "app_hash",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "98a9ba8a-0123-4456-b89a-b1915a30f5b1",
+              "type": "group"
+            }
+          },
+          "table": "az_metadata"
+        }
+      ],
+      "title": "Nombre de la App B",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Número de permisos que solicita la App $packageB",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 16,
+        "y": 2
+      },
+      "id": 10,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  COUNT(permission_name) \nFROM \n  app_warehouse.app_uses_permission\nWHERE \n  app_hash='$hashB'",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "name": "COUNT",
+                "parameters": [
+                  {
+                    "name": "permission_name",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "app_uses_permission"
+        }
+      ],
+      "title": "Permisos Solicitados",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Número de permisos custom que solicita la App $packageB",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 20,
+        "y": 2
+      },
+      "id": 11,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  COUNT(permission_name) \nFROM \n  app_warehouse.app_uses_permission\nWHERE \n  app_hash='$hashB'\n  AND \n  permission_name NOT IN (SELECT permission_name FROM app_warehouse.android_permission)",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "name": "COUNT",
+                "parameters": [
+                  {
+                    "name": "permission_name",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "app_uses_permission"
+        }
+      ],
+      "title": "Permisos Custom Solicitados",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "max": 10,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 0
+              },
+              {
+                "color": "dark-red",
+                "value": 10
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 4,
+        "x": 0,
+        "y": 7
+      },
+      "id": 6,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  score_value \nFROM \n  app_warehouse.score\nWHERE \n  app_hash='$hashA'\n  AND \n  privacy_rank_name='$privacy_rank_name' ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "app_hash",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "score"
+        }
+      ],
+      "title": "Puntuación obtenida para $packageA por $privacy_rank_name",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Peso que aporta cada grupo de permisos solicitado por la app $packageA a la Métrica",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 4,
+        "y": 7
+      },
+      "id": 14,
+      "options": {
+        "displayMode": "basic",
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  SUM(r.rank_value), a.android_permission_group_name \nFROM \n  permission_rank AS r JOIN android_permission AS a\nON \n  r.permission_name=a.permission_name\nWHERE \n  r.permission_name IN (\n    SELECT\n      permission_name\n    FROM\n      app_uses_permission\n    WHERE\n      app_hash='$hashA'\n  )\n  AND\n  a.android_permission_group_name IS NOT NULL\nGROUP BY\n  a.android_permission_group_name\nORDER BY\n  SUM(r.rank_value) DESC",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Peso que aporta cada grupo de permisos a la métrica",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "max": 10,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 0
+              },
+              {
+                "color": "dark-red",
+                "value": 10
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 4,
+        "x": 12,
+        "y": 7
+      },
+      "id": 7,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  score_value \nFROM \n  app_warehouse.score\nWHERE \n  app_hash='$hashB'\n  AND \n  privacy_rank_name='$privacy_rank_name' ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "app_hash",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "score"
+        }
+      ],
+      "title": "Puntuación obtenida para $packageB por $privacy_rank_name",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Peso que aporta cada grupo de permisos solicitado por la app $packageB a la Métrica",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 7
+      },
+      "id": 15,
+      "options": {
+        "displayMode": "basic",
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  SUM(r.rank_value), a.android_permission_group_name \nFROM \n  permission_rank AS r JOIN android_permission AS a\nON \n  r.permission_name=a.permission_name\nWHERE \n  r.permission_name IN (\n    SELECT\n      permission_name\n    FROM\n      app_uses_permission\n    WHERE\n      app_hash='$hashB'\n  )\n  AND\n  a.android_permission_group_name IS NOT NULL\nGROUP BY\n  a.android_permission_group_name\nORDER BY\n  SUM(r.rank_value) DESC",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Peso que aporta cada grupo de permisos a la métrica",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Evolución del valor de la Métrica $privacy_rank_name para la app $packageA en función de las versiones de la misma.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 0,
+        "y": 15
+      },
+      "id": 16,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  a.version_code AS \"Código de Versión\", s.score_value AS \"Valor de la Métrica\" \nFROM \n  app_warehouse.score AS s JOIN app AS a\nON\n  s.app_hash=a.hash\nWHERE \n  a.package='$packageA'\n  AND\n  s.privacy_rank_name='$privacy_rank_name'\nORDER BY\n a.version_code",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Evolución de la Métrica $privacy_rank_name para $packageA",
+      "type": "trend"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Aplicaciones sugeridas según el valor de la métrica.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "package"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 104
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "version_name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 156
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Versión"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 73
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Métrica"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 73
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 6,
+        "y": 15
+      },
+      "id": 18,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  a.package AS \"Nombre de Paquete\", a.version_name AS \"Versión\", s.score_value AS \"Métrica\"\nFROM\n  app AS a JOIN score AS s\nON\n  a.hash=s.app_hash\nWHERE\n  a.category='$categoryA'\n  AND\n  s.privacy_rank_name='$privacy_rank_name'\n  AND\n  s.score_value < (SELECT score_value FROM app_warehouse.score WHERE app_hash='$hashA' AND privacy_rank_name='$privacy_rank_name')\nORDER BY s.score_value DESC",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Otras sugerencias en $categoryA",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Evolución del valor de la Métrica $privacy_rank_name para la app $packageB en función de las versiones de la misma.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 12,
+        "y": 15
+      },
+      "id": 17,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  a.version_code AS \"Código de Versión\", s.score_value AS \"Valor de la Métrica\" \nFROM \n  app_warehouse.score AS s JOIN app AS a\nON\n  s.app_hash=a.hash\nWHERE \n  a.package='$packageB'\n  AND\n  s.privacy_rank_name='$privacy_rank_name'\nORDER BY\n a.version_code",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Evolución de la Métrica $privacy_rank_name para $packageB",
+      "type": "trend"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Aplicaciones sugeridas según el valor de la métrica.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "package"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 104
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "version_name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 156
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Versión"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 73
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Métrica"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 73
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 18,
+        "y": 15
+      },
+      "id": 19,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  a.package AS \"Nombre de Paquete\", a.version_name AS \"Versión\", s.score_value AS \"Métrica\"\nFROM\n  app AS a JOIN score AS s\nON\n  a.hash=s.app_hash\nWHERE\n  a.category='$categoryB'\n  AND\n  s.privacy_rank_name='$privacy_rank_name'\n  AND\n  s.score_value < (SELECT score_value FROM app_warehouse.score WHERE app_hash='$hashB' AND privacy_rank_name='$privacy_rank_name')\nORDER BY s.score_value DESC",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Otras sugerencias en $categoryB",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Política de privacidad de $packageA",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 0,
+        "y": 22
+      },
+      "id": 12,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^privacy_policy_url$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT privacy_policy_url FROM app_warehouse.az_metadata WHERE app_hash = '$hashA' LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "privacy_policy_url",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999aa989-0123-4456-b89a-b1915a54f2e4",
+                  "properties": {
+                    "field": "app_hash",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "$hashA"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "98a9ba8a-0123-4456-b89a-b1915a30f5b1",
+              "type": "group"
+            },
+            "whereString": "app_hash = '$hashA'"
+          },
+          "table": "az_metadata"
+        }
+      ],
+      "title": "Politica de Privacidad de $packageA",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Política de privacidad de $packageB",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 12,
+        "y": 22
+      },
+      "id": 13,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^privacy_policy_url$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT privacy_policy_url FROM app_warehouse.az_metadata WHERE app_hash = '$hashB' LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "privacy_policy_url",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "999aa989-0123-4456-b89a-b1915a54f2e4",
+                  "properties": {
+                    "field": "app_hash",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "$hashB"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "98a9ba8a-0123-4456-b89a-b1915a30f5b1",
+              "type": "group"
+            },
+            "whereString": "app_hash = '$hashB'"
+          },
+          "table": "az_metadata"
+        }
+      ],
+      "title": "Politica de Privacidad de $packageB",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 9,
+        "y": 26
+      },
+      "id": 3,
+      "options": {
+        "folderUID": "ddux3l4hdje9sf",
+        "includeVars": false,
+        "keepTime": false,
+        "maxItems": 10,
+        "query": "",
+        "showFolderNames": false,
+        "showHeadings": false,
+        "showRecentlyViewed": false,
+        "showSearch": true,
+        "showStarred": false,
+        "tags": []
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Menu",
+      "type": "dashlist"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "RPNDroid",
+          "value": "RPNDroid"
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "fdut1p3chthq8b"
+        },
+        "definition": "SELECT privacy_rank_name FROM privacy_rank WHERE privacy_rank_name = \"RPNDroid\"",
+        "description": "Métrica de Privacidad para utilizar en los gráficos.",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Métrica de Privacidad",
+        "multi": false,
+        "name": "privacy_rank_name",
+        "options": [],
+        "query": "SELECT privacy_rank_name FROM privacy_rank WHERE privacy_rank_name = \"RPNDroid\"",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "es.lacaixa.mobile.android.newwapicon",
+          "value": "es.lacaixa.mobile.android.newwapicon"
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "fdut1p3chthq8b"
+        },
+        "definition": "SELECT package FROM app WHERE hash IN (SELECT app_hash FROM az_metadata WHERE rating_count > 1);",
+        "description": "Nombre de paquete de la aplicación seleccionada",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Nombre de paquete de la app A",
+        "multi": false,
+        "name": "packageA",
+        "options": [],
+        "query": "SELECT package FROM app WHERE hash IN (SELECT app_hash FROM az_metadata WHERE rating_count > 1);",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "5.36.0",
+          "value": "5.36.0"
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "fdut1p3chthq8b"
+        },
+        "definition": "SELECT version_name FROM app WHERE package='$packageA';",
+        "description": "Versión de la App A seleccionada",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Versión de la App A",
+        "multi": false,
+        "name": "version_nameA",
+        "options": [],
+        "query": "SELECT version_name FROM app WHERE package='$packageA';",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "072fb431b00fffc3b8a59ca0ef0c7a16a03eba52e5224f7cede266af24296cc6",
+          "value": "072fb431b00fffc3b8a59ca0ef0c7a16a03eba52e5224f7cede266af24296cc6"
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "fdut1p3chthq8b"
+        },
+        "definition": "SELECT hash FROM app WHERE package='$packageA' AND version_name='$version_nameA'",
+        "description": "Hash de la App A seleccionada",
+        "hide": 2,
+        "includeAll": false,
+        "label": "Hash de la App A",
+        "multi": false,
+        "name": "hashA",
+        "options": [],
+        "query": "SELECT hash FROM app WHERE package='$packageA' AND version_name='$version_nameA'",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "FINANCE",
+          "value": "FINANCE"
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "fdut1p3chthq8b"
+        },
+        "definition": "SELECT category FROM app WHERE package='$packageA' AND version_name='$version_nameA'",
+        "description": "Categoría de la App A seleccionada",
+        "hide": 2,
+        "includeAll": false,
+        "label": "Categoría de la App A",
+        "multi": false,
+        "name": "categoryA",
+        "options": [],
+        "query": "SELECT category FROM app WHERE package='$packageA' AND version_name='$version_nameA'",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "com.revolut.revolut",
+          "value": "com.revolut.revolut"
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "fdut1p3chthq8b"
+        },
+        "definition": "SELECT package FROM app WHERE hash IN (SELECT app_hash FROM az_metadata WHERE rating_count > 1);",
+        "description": "Nombre de paquete de la aplicación seleccionada",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Nombre de paquete de la app B",
+        "multi": false,
+        "name": "packageB",
+        "options": [],
+        "query": "SELECT package FROM app WHERE hash IN (SELECT app_hash FROM az_metadata WHERE rating_count > 1);",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "7.15.2",
+          "value": "7.15.2"
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "fdut1p3chthq8b"
+        },
+        "definition": "SELECT version_name FROM app WHERE package='$packageB';",
+        "description": "Versión de la App B seleccionada",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Versión de la App B",
+        "multi": false,
+        "name": "version_nameB",
+        "options": [],
+        "query": "SELECT version_name FROM app WHERE package='$packageB';",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "00924c27071af255d01d579e61f91071a8b8186ddee914343dd98b2879abcc91",
+          "value": "00924c27071af255d01d579e61f91071a8b8186ddee914343dd98b2879abcc91"
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "fdut1p3chthq8b"
+        },
+        "definition": "SELECT hash FROM app WHERE package='$packageB' AND version_name='$version_nameB'",
+        "description": "Hash de la App B seleccionada",
+        "hide": 2,
+        "includeAll": false,
+        "label": "Hash de la App B",
+        "multi": false,
+        "name": "hashB",
+        "options": [],
+        "query": "SELECT hash FROM app WHERE package='$packageB' AND version_name='$version_nameB'",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "FINANCE",
+          "value": "FINANCE"
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "fdut1p3chthq8b"
+        },
+        "definition": "SELECT category FROM app WHERE package='$packageB' AND version_name='$version_nameB'",
+        "description": "Categoría de la App B seleccionada",
+        "hide": 2,
+        "includeAll": false,
+        "label": "Categoría de la App B",
+        "multi": false,
+        "name": "categoryB",
+        "options": [],
+        "query": "SELECT category FROM app WHERE package='$packageB' AND version_name='$version_nameB'",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Comparación de Apps en Privacidad",
+  "uid": "eduzcn38ajchsd",
+  "version": 21,
+  "weekStart": ""
+}

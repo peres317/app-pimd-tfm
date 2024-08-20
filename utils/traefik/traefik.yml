@@ -1,0 +1,13 @@
+log:
+  filePath: /var/log/traefik/traefik.log
+
+accessLog:
+  filePath: /var/log/traefik/access.log
+
+entryPoints:
+  App-PIMD:
+    address: ":9999"
+
+providers:
+  file:
+    directory: /etc/traefik/config

@@ -1,0 +1,27 @@
+tls:
+  certificates:
+    - certFile: /etc/traefik/certificates/cert.pem
+      keyFile: /etc/traefik/certificates/key.pem
+
+http:
+  routers:
+    router1:
+      entryPoints:
+        - "App-PIMD"
+      middlewares:
+        - "App-PIMD-Grafana-mid"
+      service: App-PIMD-Grafana
+      rule: "PathPrefix(`/dashboard`)"
+      tls: {}
+
+  middlewares:
+    App-PIMD-Grafana-mid:
+      stripPrefix: 
+        prefixes:
+          - "/dashboard"
+
+  services:
+    App-PIMD-Grafana:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:3000/" 

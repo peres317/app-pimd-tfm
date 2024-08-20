@@ -1,0 +1,27 @@
+tls:
+  certificates:
+    - certFile: /etc/traefik/certificates/cert.pem
+      keyFile: /etc/traefik/certificates/key.pem
+
+http:
+  routers:
+    router0:
+      entryPoints:
+        - "App-PIMD"
+      middlewares:
+        - "App-PIMD-API-mid"
+      service: App-PIMD-API
+      rule: "PathPrefix(`/api`)"
+      tls: {}
+
+  middlewares:
+    App-PIMD-API-mid:
+      stripPrefix: 
+        prefixes:
+          - "/api"
+
+  services:
+    App-PIMD-API:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:8080/" 

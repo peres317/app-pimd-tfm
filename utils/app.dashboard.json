@@ -1,0 +1,2223 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Panel de mandos de Aplicaciones Android",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 2,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 23,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "# Dashboard de Apps\n\n---",
+        "mode": "markdown"
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "",
+          "refId": "A"
+        }
+      ],
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 2
+      },
+      "id": 6,
+      "panels": [],
+      "title": "App",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Nombre de la aplicación seleccionada.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 9,
+        "x": 0,
+        "y": 3
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "uniqueValues"
+          ],
+          "fields": "/^app_title$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT app_title FROM app_warehouse.az_metadata WHERE app_hash = '$hash' LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "app_title",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "888a8abb-0123-4456-b89a-b191553d15cd",
+                  "properties": {
+                    "field": "app_hash",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "$hash"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "ab889a98-0123-4456-b89a-b1915524c25c",
+              "type": "group"
+            },
+            "whereString": "app_hash = '$hash'"
+          },
+          "table": "az_metadata"
+        }
+      ],
+      "title": "Nombre",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Categoría de la aplicación seleccionada",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 7,
+        "x": 9,
+        "y": 3
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "uniqueValues"
+          ],
+          "fields": "/^category$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT category FROM app_warehouse.app WHERE hash = '$hash' LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "category",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "888ab889-89ab-4cde-b012-319155465d50",
+                  "properties": {
+                    "field": "hash",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "$hash"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "ab889a98-0123-4456-b89a-b1915524c25c",
+              "type": "group"
+            },
+            "whereString": "hash = '$hash'"
+          },
+          "table": "app"
+        }
+      ],
+      "title": "Categoría",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Nombre de paquete que identifica la aplicación seleccionada.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 16,
+        "y": 3
+      },
+      "id": 1,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "uniqueValues"
+          ],
+          "fields": "/^package$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT package FROM app_warehouse.app WHERE hash = '$hash' LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "package",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "b89aaaa9-4567-489a-bcde-f191553b34f9",
+                  "properties": {
+                    "field": "hash",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "$hash"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "ab889a98-0123-4456-b89a-b1915524c25c",
+              "type": "group"
+            },
+            "whereString": "hash = '$hash'"
+          },
+          "table": "app"
+        }
+      ],
+      "title": "Nombre de Paquete",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Versión mínima de SDK de Android requerida para el funcionamiento de la aplicación.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 21,
+        "y": 3
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "uniqueValues"
+          ],
+          "fields": "/^min_sdk_version$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT min_sdk_version FROM app_warehouse.app WHERE hash = '$hash' LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "min_sdk_version",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "9ba8b89b-89ab-4cde-b012-3191554ac8b6",
+                  "properties": {
+                    "field": "hash",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "$hash"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "ab889a98-0123-4456-b89a-b1915524c25c",
+              "type": "group"
+            },
+            "whereString": "hash = '$hash'"
+          },
+          "table": "app"
+        }
+      ],
+      "title": "Min SDK",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Fecha de salida de la aplicación en Google Play.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "pattern": "(.*)Jan(.*)",
+                "result": {
+                  "index": 0,
+                  "text": "$1Enero$2"
+                }
+              },
+              "type": "regex"
+            },
+            {
+              "options": {
+                "pattern": "(.*)Feb(.*)",
+                "result": {
+                  "index": 1,
+                  "text": "$1Febrero$2"
+                }
+              },
+              "type": "regex"
+            },
+            {
+              "options": {
+                "pattern": "(.*)Mar(.*)",
+                "result": {
+                  "index": 2,
+                  "text": "$1Marzo$2"
+                }
+              },
+              "type": "regex"
+            },
+            {
+              "options": {
+                "pattern": "(.*)Apr(.*)",
+                "result": {
+                  "index": 3,
+                  "text": "$1Abril$2"
+                }
+              },
+              "type": "regex"
+            },
+            {
+              "options": {
+                "pattern": "(.*)May(.*)",
+                "result": {
+                  "index": 4,
+                  "text": "$1Mayo$2"
+                }
+              },
+              "type": "regex"
+            },
+            {
+              "options": {
+                "pattern": "(.*)Jun(.*)",
+                "result": {
+                  "index": 5,
+                  "text": "$1Junio$2"
+                }
+              },
+              "type": "regex"
+            },
+            {
+              "options": {
+                "pattern": "(.*)Jul(.*)",
+                "result": {
+                  "index": 6,
+                  "text": "$1Julio$2"
+                }
+              },
+              "type": "regex"
+            },
+            {
+              "options": {
+                "pattern": "(.*)Aug(.*)",
+                "result": {
+                  "index": 7,
+                  "text": "$1Agosto$2"
+                }
+              },
+              "type": "regex"
+            },
+            {
+              "options": {
+                "pattern": "(.*)Sept(.*)",
+                "result": {
+                  "index": 8,
+                  "text": "$1Septiembre$2"
+                }
+              },
+              "type": "regex"
+            },
+            {
+              "options": {
+                "pattern": "(.*)Oct(.*)",
+                "result": {
+                  "index": 9,
+                  "text": "$1Octubre$2"
+                }
+              },
+              "type": "regex"
+            },
+            {
+              "options": {
+                "pattern": "(.*)Nov(.*)",
+                "result": {
+                  "index": 10,
+                  "text": "$1Noviembre$2"
+                }
+              },
+              "type": "regex"
+            },
+            {
+              "options": {
+                "pattern": "(.*)Dec(.*)",
+                "result": {
+                  "index": 11,
+                  "text": "$1Diciembre$2"
+                }
+              },
+              "type": "regex"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 7,
+        "x": 9,
+        "y": 6
+      },
+      "id": 14,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^uplaod_date$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT uplaod_date FROM app_warehouse.az_metadata WHERE app_hash = '$hash' LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "uplaod_date",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "b99aba9b-cdef-4012-b456-7191559bc002",
+                  "properties": {
+                    "field": "app_hash",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "$hash"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "98989b9a-0123-4456-b89a-b19155600d1a",
+              "type": "group"
+            },
+            "whereString": "app_hash = '$hash'"
+          },
+          "table": "az_metadata"
+        }
+      ],
+      "title": "Fecha de publicación",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Versión de la aplicación seleccionada.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 16,
+        "y": 6
+      },
+      "id": 3,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "uniqueValues"
+          ],
+          "fields": "/^version_name$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT version_name FROM app_warehouse.app WHERE hash = '$hash' LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "version_name",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "bab8baba-4567-489a-bcde-f19155424b96",
+                  "properties": {
+                    "field": "hash",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "$hash"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "ab889a98-0123-4456-b89a-b1915524c25c",
+              "type": "group"
+            },
+            "whereString": "hash = '$hash'"
+          },
+          "table": "app"
+        }
+      ],
+      "title": "Versión",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Tamaño de la aplicación seleccionada en MB.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 50
+              },
+              {
+                "color": "dark-red",
+                "value": 100
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 21,
+        "y": 6
+      },
+      "id": 13,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "hide": true,
+          "rawSql": "SELECT MAX(size) FROM app_warehouse.az_metadata WHERE app_hash = '$hash' LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "name": "MAX",
+                "parameters": [
+                  {
+                    "name": "size",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "9aa89a89-0123-4456-b89a-b191559714a8",
+                  "properties": {
+                    "field": "app_hash",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "$hash"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "98989b9a-0123-4456-b89a-b19155600d1a",
+              "type": "group"
+            },
+            "whereString": "app_hash = '$hash'"
+          },
+          "table": "az_metadata"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$A*2**(-20)",
+          "hide": false,
+          "refId": "Tamaño (MB)",
+          "type": "math"
+        }
+      ],
+      "title": "Tamaño en MB",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 8,
+      "panels": [],
+      "title": "Popularidad y Valoraciones",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Puntuación media de la app sobre 5.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 1,
+          "mappings": [],
+          "max": 5,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 2
+              },
+              {
+                "color": "green",
+                "value": 4
+              },
+              {
+                "color": "dark-green",
+                "value": 5
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 4,
+        "x": 0,
+        "y": 10
+      },
+      "id": 9,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "/^star_rating$/",
+          "values": false
+        },
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT star_rating FROM app_warehouse.az_metadata WHERE app_hash = '$hash' LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "star_rating",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "a9b9bab9-0123-4456-b89a-b191554c4725",
+                  "properties": {
+                    "field": "app_hash",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "$hash"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "ab889a98-0123-4456-b89a-b1915524c25c",
+              "type": "group"
+            },
+            "whereString": "app_hash = '$hash'"
+          },
+          "table": "az_metadata"
+        }
+      ],
+      "title": "Puntuación media",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Distribución de las valoraciones de la aplicación.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-RdYlGr"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Nº de Valoraciones",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 11,
+        "x": 4,
+        "y": 10
+      },
+      "id": 10,
+      "options": {
+        "barRadius": 0.05,
+        "barWidth": 0.9,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "orientation": "vertical",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "Valoraciones",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \"Estrellas\", AVG(one_star_ratings) AS \"1\", AVG(two_star_ratings) AS \"2\", AVG(three_star_ratings) AS \"3\", AVG(four_star_ratings) AS \"4\", AVG(five_star_ratings) AS \"5\" FROM app_warehouse.az_metadata WHERE app_hash = '$hash' GROUP BY app_hash LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "name": "AVG",
+                "parameters": [
+                  {
+                    "name": "one_star_ratings",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "AVG",
+                "parameters": [
+                  {
+                    "name": "two_star_ratings",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "AVG",
+                "parameters": [
+                  {
+                    "name": "three_star_ratings",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "AVG",
+                "parameters": [
+                  {
+                    "name": "four_star_ratings",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "AVG",
+                "parameters": [
+                  {
+                    "name": "five_star_ratings",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "app_hash",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "bab99b89-cdef-4012-b456-7191554e6c89",
+                  "properties": {
+                    "field": "app_hash",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "$hash"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "ab889a98-0123-4456-b89a-b1915524c25c",
+              "type": "group"
+            },
+            "whereString": "app_hash = '$hash'"
+          },
+          "table": "az_metadata"
+        }
+      ],
+      "title": "Distribución de la Puntuación",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Número total de descargas de la app.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "pattern": "(.*)\\+ downloads$",
+                "result": {
+                  "index": 0,
+                  "text": "$1 descargas"
+                }
+              },
+              "type": "regex"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 9,
+        "x": 15,
+        "y": 10
+      },
+      "id": 12,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^num_downloads$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT num_downloads FROM app_warehouse.az_metadata WHERE app_hash = '$hash' LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "num_downloads",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "a9b9bab9-0123-4456-b89a-b191554c4725",
+                  "properties": {
+                    "field": "app_hash",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "$hash"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "ab889a98-0123-4456-b89a-b1915524c25c",
+              "type": "group"
+            },
+            "whereString": "app_hash = '$hash'"
+          },
+          "table": "az_metadata"
+        }
+      ],
+      "title": "Nº de Descargas",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Número total de valoraciones.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 9,
+        "x": 15,
+        "y": 14
+      },
+      "id": 11,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "/^rating_count$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT rating_count FROM app_warehouse.az_metadata WHERE app_hash = '$hash' LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "rating_count",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "a9b9bab9-0123-4456-b89a-b191554c4725",
+                  "properties": {
+                    "field": "app_hash",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "$hash"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "ab889a98-0123-4456-b89a-b1915524c25c",
+              "type": "group"
+            },
+            "whereString": "app_hash = '$hash'"
+          },
+          "table": "az_metadata"
+        }
+      ],
+      "title": "Nº de Valoraciones",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 18
+      },
+      "id": 15,
+      "panels": [],
+      "title": "Desarrollador",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Desarrollador de la aplicación.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 7,
+        "x": 0,
+        "y": 19
+      },
+      "id": 17,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^developer_name$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT developer_name FROM app_warehouse.az_metadata WHERE app_hash = '$hash' LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "developer_name",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "9898abab-89ab-4cde-b012-3191559ebb9d",
+                  "properties": {
+                    "field": "app_hash",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "$hash"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "98989b9a-0123-4456-b89a-b19155600d1a",
+              "type": "group"
+            },
+            "whereString": "app_hash = '$hash'"
+          },
+          "table": "az_metadata"
+        }
+      ],
+      "title": "Desarrollador",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Dirección del desarrollador de la aplicación.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 17,
+        "x": 7,
+        "y": 19
+      },
+      "id": 19,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^developer_address$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT developer_address FROM app_warehouse.az_metadata WHERE app_hash = '$hash' LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "developer_address",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "9898abab-89ab-4cde-b012-3191559ebb9d",
+                  "properties": {
+                    "field": "app_hash",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "$hash"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "98989b9a-0123-4456-b89a-b19155600d1a",
+              "type": "group"
+            },
+            "whereString": "app_hash = '$hash'"
+          },
+          "table": "az_metadata"
+        }
+      ],
+      "title": "Dirección del Desarrollador",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Email del desarrollador de la aplicación.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 7,
+        "x": 0,
+        "y": 22
+      },
+      "id": 18,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^developer_email$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT developer_email FROM app_warehouse.az_metadata WHERE app_hash = '$hash' LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "developer_email",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "9898abab-89ab-4cde-b012-3191559ebb9d",
+                  "properties": {
+                    "field": "app_hash",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "$hash"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "98989b9a-0123-4456-b89a-b19155600d1a",
+              "type": "group"
+            },
+            "whereString": "app_hash = '$hash'"
+          },
+          "table": "az_metadata"
+        }
+      ],
+      "title": "Email del Desarrollador",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdut1p3chthq8b"
+      },
+      "description": "Página web del desarrollador de la aplicación.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 17,
+        "x": 7,
+        "y": 22
+      },
+      "id": 20,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^developer_website$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "dataset": "app_warehouse",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fdut1p3chthq8b"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT developer_website FROM app_warehouse.az_metadata WHERE app_hash = '$hash' LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "developer_website",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "9898abab-89ab-4cde-b012-3191559ebb9d",
+                  "properties": {
+                    "field": "app_hash",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "$hash"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "98989b9a-0123-4456-b89a-b19155600d1a",
+              "type": "group"
+            },
+            "whereString": "app_hash = '$hash'"
+          },
+          "table": "az_metadata"
+        }
+      ],
+      "title": "Web del Desarrollador",
+      "type": "stat"
+    },
+    {
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 9,
+        "y": 25
+      },
+      "id": 22,
+      "libraryPanel": {
+        "name": "Menu",
+        "uid": "edux3rkhh143kb"
+      },
+      "title": "Menu"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "com.disney.disneyplus",
+          "value": "com.disney.disneyplus"
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "fdut1p3chthq8b"
+        },
+        "definition": "SELECT package FROM app WHERE hash IN (SELECT app_hash FROM az_metadata WHERE rating_count > 1);",
+        "description": "Identificador de una aplicación.",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Nombre de paquete",
+        "multi": false,
+        "name": "package",
+        "options": [],
+        "query": "SELECT package FROM app WHERE hash IN (SELECT app_hash FROM az_metadata WHERE rating_count > 1);",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "1.16.0",
+          "value": "1.16.0"
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "fdut1p3chthq8b"
+        },
+        "definition": "SELECT version_name FROM app WHERE package='$package';",
+        "description": "Identificador de la versión de una aplicación.",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Versión",
+        "multi": false,
+        "name": "version_name",
+        "options": [],
+        "query": "SELECT version_name FROM app WHERE package='$package';",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "0786b9c57b7c9477c6042f8ad853e59a14fef6e66f892450917e074cbefbbd8e",
+          "value": "0786b9c57b7c9477c6042f8ad853e59a14fef6e66f892450917e074cbefbbd8e"
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "fdut1p3chthq8b"
+        },
+        "definition": "SELECT hash FROM app WHERE package='$package' AND version_name='$version_name'",
+        "description": "Hash SHA256 de la aplicación seleccionada.",
+        "hide": 2,
+        "includeAll": false,
+        "label": "Hash",
+        "multi": false,
+        "name": "hash",
+        "options": [],
+        "query": "SELECT hash FROM app WHERE package='$package' AND version_name='$version_name'",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "2024-08-13T06:12:01.004Z",
+    "to": "2024-08-17T06:12:01.020Z"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "App",
+  "uid": "ddutgksn5haf4f",
+  "version": 62,
+  "weekStart": ""
+}
