@@ -1,0 +1,11 @@
+data/config.json
+data/*.pem
+data/latest.csv.gz
+*.log
+venv/
+__pycache__/
+backups/*.sql
+*.crt
+*.key
+*.old
+DELETEME.txt
